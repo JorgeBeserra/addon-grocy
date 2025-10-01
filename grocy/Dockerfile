@@ -72,6 +72,9 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
+RUN chmod -R a+rX /etc/s6-overlay || true \
+    && find /etc/s6-overlay -type f -name run -exec chmod +x {} \; || true
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
